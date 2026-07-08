@@ -103,10 +103,10 @@ function TsSitePage() {
     quote: null,
     quoteAttr: null,
     metrics: [["~2,100", "records migrated & cleaned"], ["3 weeks", "full CRM from scratch, AI-automated"], ["0", "manual lead handling"]],
-    meta: [["Engagement", "Attio CRM setup — Phase 1"], ["Timeline", "March–May 2026"], ["Stack", "Attio · Typeform · n8n · Aircall · Google Sheets"]],
+    meta: [["Engagement", "Attio CRM — built from scratch"], ["Timeline", "3 weeks"], ["Stack", "Attio · Typeform · n8n · Aircall · Google Sheets"]],
     detail: {
-      headline: "A CRM built around how the team actually sells — and a lead pipeline that runs itself.",
-      intro: "ivee was capturing leads but had no reliable system to manage them. We designed and built the full system on Attio, wired it to Typeform for live capture and Aircall for call logging via n8n, migrated and cleaned ~1,400 contacts and ~700 companies, and handed it over documented enough for the team to run day-to-day without coming back.",
+      headline: "A full CRM, built from scratch in three weeks — architected to how the team actually sells, with a pipeline that runs itself.",
+      intro: "ivee was capturing leads but had no CRM to manage them. In three weeks we built one from scratch on Attio — architected to their sales motion — and wired in AI automations for live lead capture from Typeform and automatic call logging from Aircall via n8n. We migrated and cleaned ~1,400 contacts and ~700 companies, then handed it over documented enough for the team to run day-to-day without coming back.",
       sections: [
       { n: "01", title: "The challenge", lead: "", items: [
         ["No structured pipeline.", "Leads, deals, companies and products lived in spreadsheets with no consistent process."],
@@ -115,14 +115,14 @@ function TsSitePage() {
         ["Calling blind.", "Sales calls weren't logged against contacts, and company name, size and AI-usage showed blank at call time."]] },
       { n: "02", title: "What we built", lead: "", items: [
         ["A purpose-built Attio workspace.", "Objects for People, Companies, Deals and Products; a named-stage pipeline; custom attributes mapped to the data the team actually uses; and lists for the two lead tracks — Sales-Assisted (11+) and Self-Serve."],
-        ["Live Typeform → Attio integration.", "An n8n workflow (iterated to v14) that creates or updates records idempotently on every submission, routes leads by company size to the right owner, normalises phone numbers, captures UTM attribution, and filters out partial responses."],
+        ["Live Typeform → Attio automation.", "An n8n automation that creates or updates the right record on every submission — never a duplicate — routes leads by company size to the right owner, normalises phone numbers, captures UTM attribution, and filters out partial responses."],
         ["Aircall → Attio calling stack.", "Completed calls trigger a webhook that pulls the transcript, matches the caller to the right person, and posts it as a note automatically — historical calls backfilled so no context was lost."],
         ["A full data migration & cleanup.", "~1,412 people and ~706 companies re-uploaded with corrected mappings; 492 company records created for personal-email leads; 1,083 phone numbers validated; duplicates removed via run-once cleanup workflows."],
         ["A documented handover.", "A technical reference covering architecture, the n8n workflow node-by-node, the Attio API, import formats — plus a data-fix report explaining the blank-company root cause and its permanent fix."]] },
       { n: "03", title: "Approach highlights", lead: "", items: [
         ["Built around the real workflow, not a template.", "Pipeline stages and routing rules match how ivee's team actually sells."],
-        ["Idempotent by design.", "Email/domain matching means the system self-heals rather than duplicating on re-runs."],
-        ["Root cause, not patches.", "When company fields came back blank, the historical data was repaired and the live workflow rebuilt (v14) so the problem couldn't recur."]] }],
+        ["Self-cleaning, never duplicating.", "Email- and domain-matching means a repeat submission updates the existing record instead of creating a duplicate — the data stays clean on its own."],
+        ["Root cause, not patches.", "When company fields came back blank, the historical data was repaired and the live automation rebuilt so the problem couldn't recur."]] }],
       table: { head: ["Deliverable", "Status"], rows: [
         ["Attio workspace build (objects, pipeline, fields, views)", "Delivered"],
         ["Typeform → Attio live integration, tested end-to-end", "Delivered"],
