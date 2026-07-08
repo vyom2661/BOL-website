@@ -19,7 +19,17 @@ Any static host works — upload `index.html` and you're done.
 
 ## Editing
 
-Small copy/style changes: edit the files in `source/directions/`, then open `source/BackOfficeLabs-Site-Throughput.html` in a browser to preview (requires internet for the CDN scripts). To ship, the source must be re-bundled into a self-contained `index.html`.
+Small copy/style changes: edit the files in `source/directions/`, then open `source/BackOfficeLabs-Site-Throughput.html` in a browser to preview (requires internet for the CDN scripts). To ship, re-pack the source into the self-contained `index.html`:
+
+```
+python3 build.py
+```
+
+`build.py` re-encodes the two editable JSX bundles (`source/directions/*.jsx`) back into `index.html`'s manifest. It does **not** rebuild the page shell (`source/BackOfficeLabs-Site-Throughput.html`) or the embedded fonts — if you change those, the file needs the original bundler.
+
+### Case studies
+
+The four case-study cards and their dedicated pages are data-driven from the `proof` array near the top of `source/directions/throughput-site-page.jsx`. Each entry drives both the card (in the "The work" section) and a full detail page reached at `index.html#/work/<slug>`. To add or edit a case study, edit that array (client, `sub`, `sector`, `url`/`urlLabel`, headline `metrics`, `meta` rows, and the `detail` sections/table/takeaway), then run `python3 build.py`.
 
 ## Notes
 
