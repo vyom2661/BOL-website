@@ -28,8 +28,8 @@ function TsSitePage() {
     ["Command Center", "flagship", "Your tools unified into one self-refreshing operating system: 360° customer view, risk scoring, AI quality-grading at 100% coverage, daily digests to each team's Slack.", "from £15k · 6–8 weeks"]],
 
     note: "Speed-to-lead response, “ask your business anything” querying, and support agents are delivered as modules inside these builds.",
-    anchor: "A full revenue system — CRM, pipeline, call logging — built from scratch and run on AI in 3 weeks for a hiring platform.",
-    caseSlug: "ivee"
+    anchor: "8 disconnected systems collapsed into one self-refreshing operating system a high-volume coaching business now runs on AI.",
+    caseSlug: "command-center"
   },
   {
     tag: "Track B",
@@ -63,6 +63,45 @@ function TsSitePage() {
   ["Root cause, then handover.", "When something breaks, we fix the data AND rebuild the workflow so it can't recur — then document it node-by-node so your team owns it. You keep the system, not a dependency on us."]];
 
   const proof = [
+  {
+    slug: "command-center",
+    client: "Command Center",
+    sub: "a confidential high-volume coaching business",
+    sector: "Run it on AI · Operating system",
+    url: null,
+    urlLabel: null,
+    confidential: true,
+    logo: null,
+    headshot: null,
+    result: "Eight disconnected tools collapsed into one live operating system the team runs on AI: every paying customer scored on a single value ladder, every call AI-graded at 100% coverage hourly, refund risk flagged before it fires, and each day's priorities pushed to the team that owns them in Slack. Self-refreshing — humans read the picture, they never rebuild it.",
+    chips: ["8 systems → 1 live surface", "100% calls AI-graded, hourly", "self-refreshing"],
+    quote: null,
+    quoteAttr: null,
+    metrics: [["8 → 1", "disconnected systems into one live surface"], ["100%", "of calls AI-graded, hourly"], ["hourly", "self-refresh: pull, re-score, redeploy"]],
+    meta: [["Engagement", "Command Center — flagship operating system"], ["Timeline", "6–8 weeks · fixed fee"], ["Unified", "Payments · Postgres · scheduling · calls · email · Slack · Sheets — 8 systems"]],
+    detail: {
+      headline: "Eight disconnected tools, collapsed into one operating system that maintains itself — and finds the leak, not just shows a dashboard.",
+      intro: "A confidential high-volume coaching business ran six departments out of scattered Sheets and a half-dozen SaaS tools, with no shared view of a customer and no reliable way to see what was working. We replaced that with a self-refreshing operating system that pulls live data from every tool every hour, scores every customer and every call, surfaces exactly where customers stop finding value, and pushes each day's priorities to the team that owns them. The team runs it on AI; we handed it over documented.",
+      sections: [
+      { n: "01", title: "The problem", lead: "Behind the sale sat six functions — and the data describing a single customer was smeared across eight systems that didn't talk.", items: [
+        ["No 360° view of a customer.", "Answering “who is this, what did they buy, did they show up, are they at risk?” meant a human opening five tabs and stitching it together by hand — every morning."],
+        ["Refund prevention was manual and late.", "A large share of paying customers never logged in at all — a screaming refund signal nobody was systematically catching."],
+        ["KPIs were unknowable.", "Leadership couldn't reliably say whether the refund rate was improving, or whether last month's changes helped or hurt."],
+        ["Trackers rotted.", "The Sheets that ran daily work were stale the moment someone stopped updating them — bloated with resolved rows and duplicates."]] },
+      { n: "02", title: "What we built", lead: "One self-refreshing operating system that is both the single source of truth and the daily worklist for the whole business.", items: [
+        ["A live value ladder for every customer.", "Each paying customer sits in exactly one state — never logged in, logged in but no value yet, reached value, or refunded/left — with a refund-risk score from a grounded, audited model. One number, everywhere it's shown."],
+        ["An activation funnel that finds the leak.", "Every milestone from payment to delivered outcome, as a share of paying customers — so the single biggest drop-off stage is obvious at a glance instead of buried. The surface names where value is lost, not just that it's lost."],
+        ["Department operating tabs.", "Leadership scorecard, onboarding, community, delivery ops, refund desk and call review — each mirroring how that team actually works, each with its own live worklist."],
+        ["AI graders on autopilot.", "An all-calls grader scores every call for effectiveness and sentiment, hourly; a refund post-mortem engine reconciles every system to explain why a specific customer refunded."],
+        ["Self-maintaining trackers + push, not pull.", "Trackers seed themselves from live signals, advance status automatically and archive resolved rows; daily digests fire into the right Slack channel — booking misses to the SDR, onboarding lag to the onboarding lead, refund saves to the refund desk."]] },
+      { n: "03", title: "How it works", lead: "The elegance is in the operating model, not just the features.", items: [
+        ["A surface that rebuilds itself.", "Scheduled jobs fetch live data, re-run the scoring and regenerate the pages hourly — the header reads “live” with the current timestamp because staying current is the machine's job, not a person's."],
+        ["One scoring model, reused everywhere.", "Refund risk, customer status and KPI logic live in shared single-source-of-truth modules, so the number a rep sees on a customer card is the number leadership sees on the scorecard."],
+        ["Verified, not vibes.", "Wherever a claim could be self-reported — “we saved this refund,” “the team replied” — the system checks it against the authoritative source instead of trusting the label."]] }],
+      table: null,
+      takeaway: "The win wasn't a dashboard — a dashboard rots. It was collapsing eight disconnected systems and six manual tracker cultures into one operating surface that scores itself hourly, surfaces exactly where customers stop finding value, and pushes the right slice to the right person — then handing it over so the team runs it on AI without us."
+    }
+  },
   {
     slug: "prediction-hero",
     client: "PredictionHero",
@@ -451,7 +490,7 @@ function TsSitePage() {
         {/* PROOF — the work */}
         <section id="work" className="ts-container ts-section" style={{ borderTop: `2px solid ${TSX.black}` }}>
           <TsSectionLabel n="06">The work</TsSectionLabel>
-          <h2 className="ts-h2" style={{ maxWidth: 820 }}>Four engagements. Every claim mapped to one.</h2>
+          <h2 className="ts-h2" style={{ maxWidth: 820 }}>Five engagements. Every claim mapped to one.</h2>
           <div className="ts-grid2">
             {proof.map((c, idx) => {
               const chipBg = idx % 2 ? "oklch(0.62 0.16 152 / 0.16)" : "oklch(0.68 0.19 45 / 0.18)";
