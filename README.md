@@ -1,15 +1,12 @@
 # BackOfficeLabs — Website
 
-Marketing site for BackOfficeLabs (v2 offer: AI Opportunity Audit → fixed-price builds). Current visual theme: **Throughput** (Space Grotesk, cream paper, black borders, tangerine/green accents).
+Marketing site for BackOfficeLabs (v2 offer: AI Opportunity Audit → fixed-price builds). Current visual theme: **Throughput** (cream paper, black borders, tangerine/green accents, hard offset shadows).
 
 ## Files
 
-- **`index.html`** — the deployable site. Fully self-contained (fonts, scripts, and founder photos are embedded). This is the only file a web server needs.
-- **`source/`** — the editable source the bundle is compiled from:
-  - `BackOfficeLabs-Site-Throughput.html` — page shell (loads React + Babel from CDN)
-  - `directions/throughput-site.jsx` — shared components (nav, form, FAQ, hero visual)
-  - `directions/throughput-site-page.jsx` — all page sections and copy
-  - `assets/` — founder photos (already embedded in the JSX as data URIs; kept for reference)
+- **`index.html`** — the deployable site and the editable source. A single plain static HTML file: all content is literal HTML, CSS lives in one `<style>` tag, and there is **zero JavaScript** — the full page renders with JS disabled. The five case studies are inline sections (`#work-<slug>`) linked from the "The work" cards.
+- **`source/`** — legacy React/Babel source from the previous bundled build. Reference only.
+- **`build.py`** — legacy. **Do not run it** — it would overwrite `index.html` with the old React bundle.
 
 ## Deploying
 
@@ -19,18 +16,9 @@ Any static host works — upload `index.html` and you're done.
 
 ## Editing
 
-Small copy/style changes: edit the files in `source/directions/`, then open `source/BackOfficeLabs-Site-Throughput.html` in a browser to preview (requires internet for the CDN scripts). To ship, re-pack the source into the self-contained `index.html`:
-
-```
-python3 build.py
-```
-
-`build.py` re-encodes the two editable JSX bundles (`source/directions/*.jsx`) back into `index.html`'s manifest. It does **not** rebuild the page shell (`source/BackOfficeLabs-Site-Throughput.html`) or the embedded fonts — if you change those, the file needs the original bundler.
-
-### Case studies
-
-The four case-study cards and their dedicated pages are data-driven from the `proof` array near the top of `source/directions/throughput-site-page.jsx`. Each entry drives both the card (in the "The work" section) and a full detail page reached at `index.html#/work/<slug>`. To add or edit a case study, edit that array (client, `sub`, `sector`, `url`/`urlLabel`, headline `metrics`, `meta` rows, and the `detail` sections/table/takeaway), then run `python3 build.py`.
+Edit `index.html` directly and preview by opening it in a browser (no server or internet needed). Keep it static: no scripts, no external stylesheets or web fonts, no base64 payloads.
 
 ## Notes
 
-- The contact form is front-end only — it validates and shows a thank-you but does not deliver submissions anywhere yet. Wire it to a booking tool or form endpoint before relying on it for leads.
+- The contact form posts to `mailto:hello@backofficelabs.ai` (opens the visitor's email client). Wire it to a booking tool or form endpoint before relying on it for leads.
+- Headings use Space Grotesk only if the visitor has it installed; otherwise the Helvetica/Arial fallback stack. Embedding the font would require a base64 data-URI or an external font file — both were deliberately excluded.

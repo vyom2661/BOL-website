@@ -30,48 +30,40 @@ why this works → **the work (case studies)** → founders → FAQ → contact.
 
 ## Repo layout
 
-- **`index.html`** — the deployable site. A **self-contained bundle**: all assets (the JSX,
-  React/Babel, fonts, founder photos) are embedded, gzip+base64, inside `__bundler/*` script
-  blocks and reconstructed client-side. This is the only file a web server needs.
-- **`source/`** — the **editable** source the bundle is packed from:
-  - `BackOfficeLabs-Site-Throughput.html` — the page shell (loads React + Babel from CDN).
-  - `directions/throughput-site.jsx` — shared components (nav, contact form, FAQ, hero visual).
-  - `directions/throughput-site-page.jsx` — all page sections, copy, **and the case studies**.
-  - `assets/` — founder photos (already embedded as data-URIs; kept for reference).
-- **`build.py`** — re-packs the two editable JSX files back into `index.html`'s manifest.
+- **`index.html`** — the deployable site AND the editable source. A **single plain static HTML
+  file**: all content is literal HTML, all CSS is in one `<style>` tag in `<head>`, and there is
+  **zero JavaScript** (mobile menu = checkbox hack, FAQ = `<details>/<summary>`, contact form
+  posts via `mailto:`). The full page renders with JavaScript disabled. This is the only file a
+  web server needs.
+- **`source/`** — **LEGACY.** The old React/Babel source the previous bundled build was packed
+  from. Kept for reference only (copy history, founder photos in `assets/`).
+- **`build.py`** — **LEGACY. Do NOT run it.** It regenerates the old React bundle from `source/`
+  and would overwrite the static `index.html`.
 - **`README.md`** — deploy + build notes.
 
-**Editing `index.html` directly does nothing lasting — always edit `source/` and re-pack.**
+**Edit `index.html` directly — it is the site.**
 
-## Case studies (the part we're actively working on)
+## Case studies
 
-The "The work" section and its detail pages are **data-driven** from the `proof` array near the
-top of `source/directions/throughput-site-page.jsx`. Each entry powers:
+Each of the five case studies (Command Center, PredictionHero, ivee, Lumina, Curo Travel)
+appears twice in `index.html`, and both places must be kept in sync when editing:
 
-- a **card** in the "The work" section (sector tag, website link, headline-metrics strip, chips,
-  optional one-line testimonial, "Read the case study" button), and
-- a **dedicated detail page** at `index.html#/work/<slug>` (in-app hash route — keeps the
-  single-file deploy). Rendered by the `TsCaseStudy` component in the same file.
+- a **card** in the "The work" section (`<section id="work">`), and
+- a **full inline detail page** (`<article id="work-<slug>" class="cs">`) further down the page,
+  linked from the card's "Read the case study" button.
 
-Per-study fields: `slug, client, sub, sector, url, urlLabel, confidential, result, chips,
-quote, quoteAttr, metrics, meta, detail{ headline, intro, sections[], table, takeaway }`.
-`quote`/`quoteAttr` are testimonial slots — leave `null` until a **real** quote is supplied
-(never fabricate client testimonials). Current studies: Command Center (confidential coaching
-business), ivee, Lumina, Curo Travel.
+Testimonial quotes are real client quotes — **never fabricate or edit client testimonials**
+without the user supplying the new wording. Command Center's client must stay anonymous.
 
 ---
 
 ## How to make a change
 
-1. Edit the relevant file in `source/` (usually `source/directions/throughput-site-page.jsx`).
-2. Re-pack the bundle:  `python3 build.py`
-3. Preview locally (needs internet — React/Babel load from a CDN):
-   `python3 -m http.server 8765` then open `http://localhost:8765/index.html`.
-   Test the case-study routes too, e.g. `.../index.html#/work/curo-travel`.
+1. Edit `index.html` directly.
+2. Preview locally: open the file in a browser (no server or internet needed).
+3. Keep the constraints: no `<script>` tags, no external stylesheets/CDN/web fonts, no
+   base64-encoded payloads; all content as literal HTML; CSS only in the single `<style>` block.
 4. Commit and push (see rules below).
-
-Optional sanity check that the JSX still compiles (catches syntax errors before shipping):
-transform `source/directions/*.jsx` with `@babel/preset-react`.
 
 ---
 
