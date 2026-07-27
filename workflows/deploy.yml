@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -13,12 +14,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy via SFTP
-        uses: Dylan700/sftp-upload-action@latest
+      - name: Deploy website to Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.HOSTINGER_HOST }}
           username: ${{ secrets.HOSTINGER_USERNAME }}
           password: ${{ secrets.HOSTINGER_PASSWORD }}
+          protocol: ftps
           port: ${{ secrets.HOSTINGER_PORT }}
-          uploads: |
-            ./ => ${{ secrets.HOSTINGER_REMOTE_DIR }}
+          local-dir: ./
+          server-dir: ${{ secrets.HOSTINGER_REMOTE_DIR }}
+
+          exclude: |
+            **/.git*
+            **/.github/**
+            **/README.md
